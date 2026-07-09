@@ -1,0 +1,28 @@
+# Xcode
+*.xcworkspace
+xcuserdata/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+build/
+*.build/
+
+# macOS
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Xcode playgrounds
+*.playground/
+
+# Claude Code config
+.claude/
+
+# Temp files
+/tmp/
+
+# Icon source script
+gen_icon.sh

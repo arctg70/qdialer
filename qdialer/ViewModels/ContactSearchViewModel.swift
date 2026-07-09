@@ -1,0 +1,139 @@
+import Foundation
+import SwiftUI
+import Combine
+
+// MARK: - Contact Search ViewModel
+
+@MainActor
+final class ContactSearchViewModel: ObservableObject {
+    // MARK: Published State
+
+    @Published var searchText = ""
+    @Published var contacts = [ContactModel]()
+    @Published var filteredContacts = [ContactModel]()
+    @Published var isAuthorized = false
+    @Published var showPermissionDenied = false
+    @Published var isLoading = false
+    @Published var selectedContact: ContactModel?
+    @Published var showCallAlert = false
+    @Published var callHistory = [CallRecord]()
+
+    // MARK: Dependencies
+
+    private let contactService = ContactService.shared
+    private let pinyinService = PinyinService.shared
+    private let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+
+    // MARK: Public API
+
+    func setup() async {
+        feedbackGenerator.prepare()
+        CallHistoryStore.shared.load()
+        callHistory = CallHistoryStore.shared.records
+        await requestPermissionAndLoad()
+    }
+
+    func requestPermissionAndLoad() async {
+        let status = contactService.authorizationStatus
+
+        switch status {
+        case .notDetermined:
+            let granted = await contactService.requestAccess()
+            isAuthorized = granted
+            if granted {
+                await loadContacts()
+            } else {
+                showPermissionDenied = true
+            }
+
+        case .denied, .restricted:
+            showPermissionDenied = true
+            isAuthorized = false
+
+        case .authorized:
+            isAuthorized = true
+            await loadContacts()
+
+        @unknown default:
+            break
+        }
+    }
+
+    func loadContacts() async {
+        isLoading = true
+        contacts = await contactService.fetchAllContacts()
+        isLoading = false
+        refreshFilter()
+    }
+
+    // MARK: Input Handling
+
+    /// Append a character to the search text
+    func appendToSearch(_ letter: String) {
+        searchText += letter
+        feedbackGenerator.impactOccurred()
+        refreshFilter()
+    }
+
+    /// Delete last character from search
+    func deleteLastFromSearch() {
+        guard !searchText.isEmpty else { return }
+        searchText.removeLast()
+        feedbackGenerator.impactOccurred()
+        refreshFilter()
+    }
+
+    /// Clear entire search
+    func clearSearch() {
+        searchText = ""
+        filteredContacts = []
+    }
+
+    /// Prepare to call a contact
+    func selectContact(_ contact: ContactModel) {
+        guard !contact.phoneNumbers.isEmpty else { return }
+        selectedContact = contact
+        showCallAlert = true
+    }
+
+    /// Dial immediately — saves to history
+    func callContact(_ contact: ContactModel) {
+        guard let phone = contact.phoneNumbers.first else { return }
+        feedbackGenerator.impactOccurred()
+        CallHistoryStore.shared.addCall(name: contact.fullName, number: phone)
+        callHistory = CallHistoryStore.shared.records
+        let clean = phone.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        guard let url = URL(string: "tel://\(clean)"),
+              UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url)
+    }
+
+    // MARK: Filter
+
+    func refreshFilter() {
+        let query = searchText.trimmingCharacters(in: .whitespaces)
+        guard !query.isEmpty else {
+            filteredContacts = []
+            selectedContact = nil
+            return
+        }
+
+        // Score and sort every contact against the query
+        let scored: [(ContactModel, Int)] = contacts.compactMap { contact in
+            guard let score = pinyinService.matchQuery(query: query, contact: contact) else {
+                return nil
+            }
+            return (contact, score)
+        }
+        .sorted { $0.1 > $1.1 }
+
+        filteredContacts = scored.map(\.0)
+
+        // Auto-select if only one perfect match remains
+        if filteredContacts.count == 1 {
+            selectedContact = filteredContacts.first
+        } else {
+            selectedContact = nil
+        }
+    }
+}
