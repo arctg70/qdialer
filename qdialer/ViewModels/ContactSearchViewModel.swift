@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import Contacts
 
 // MARK: - Contact Search ViewModel
 
@@ -31,6 +32,22 @@ final class ContactSearchViewModel: ObservableObject {
         CallHistoryStore.shared.load()
         callHistory = CallHistoryStore.shared.records
         await requestPermissionAndLoad()
+        observeContactChanges()
+    }
+
+    /// Listen for external contact changes and reload automatically
+    private func observeContactChanges() {
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name.CNContactStoreDidChange,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor [weak self] in
+                // Small delay to let the store settle after the change
+                try? await Task.sleep(nanoseconds: 500_000_000)
+                await self?.loadContacts()
+            }
+        }
     }
 
     func requestPermissionAndLoad() async {
@@ -97,8 +114,9 @@ final class ContactSearchViewModel: ObservableObject {
     }
 
     /// Dial immediately — saves to history
-    func callContact(_ contact: ContactModel) {
-        guard let phone = contact.phoneNumbers.first else { return }
+    /// - Parameter phoneNumber: if nil, uses the contact's first number
+    func callContact(_ contact: ContactModel, phoneNumber: String? = nil) {
+        guard let phone = phoneNumber ?? contact.phoneNumbers.first else { return }
         feedbackGenerator.impactOccurred()
         CallHistoryStore.shared.addCall(name: contact.fullName, number: phone)
         callHistory = CallHistoryStore.shared.records

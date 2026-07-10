@@ -34,6 +34,20 @@ struct ContentView: View {
         } message: {
             Text("This app needs access to your contacts to search and dial.\n\nPlease enable Contacts in Settings → Privacy & Security.")
         }
+        .confirmationDialog(
+            "Select Number",
+            isPresented: $viewModel.showCallAlert,
+            presenting: viewModel.selectedContact
+        ) { contact in
+            ForEach(contact.phoneNumbers, id: \.self) { number in
+                Button(number) {
+                    viewModel.callContact(contact, phoneNumber: number)
+                }
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: { contact in
+            Text("Choose a number for \(contact.fullName)")
+        }
     }
 
     private var headerBar: some View {
@@ -96,7 +110,13 @@ struct ContentView: View {
                         Color.clear.frame(height: 1).id("top")
                         ForEach(Array(viewModel.filteredContacts.enumerated()), id: \.element) { _, contact in
                             ContactRowView(contact: contact, isHighlighted: viewModel.selectedContact?.id == contact.id)
-                                .onTapGesture { viewModel.callContact(contact) }
+                                .onTapGesture {
+                                    if contact.phoneNumbers.count > 1 {
+                                        viewModel.selectContact(contact)
+                                    } else {
+                                        viewModel.callContact(contact)
+                                    }
+                                }
                         }
                     }
                     .padding(.vertical, 4)
@@ -146,33 +166,79 @@ struct ContentView: View {
             ScrollView {
                 LazyVStack(spacing: 2) {
                     ForEach(viewModel.callHistory) { record in
-                        HStack(spacing: 10) {
-                            // Direction icon
-                            Image(systemName: record.direction == .outgoing
-                                ? "arrow.up.right" : "arrow.down.left")
-                                .font(.system(size: 10))
-                                .foregroundColor(record.direction == .outgoing ? .green : .orange)
-                                .frame(width: 20)
+                        HStack(spacing: 12) {
+                            // Avatar with initials (same style as ContactRowView)
+                            Group {
+                                ZStack {
+                                    Circle()
+                                        .fill(callAvatarColor(record.contactName))
+                                    Text(callInitials(record.contactName))
+                                        .font(.system(size: 16, weight: .semibold))
+                                        .foregroundColor(.white)
+                                }
+                            }
+                            .frame(width: 48, height: 48)
+                            .clipShape(Circle())
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.white.opacity(0.1), lineWidth: 0.5)
+                            )
 
+                            // Name, phone, metadata
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(record.contactName)
-                                    .font(.system(size: 15, weight: .medium))
-                                    .foregroundColor(.white)
+                                // Name row + direction badge
+                                HStack(spacing: 6) {
+                                    Text(record.contactName)
+                                        .font(.system(size: 16, weight: .medium))
+                                        .foregroundColor(.white)
+                                        .lineLimit(1)
+
+                                    // Direction badge
+                                    Label(
+                                        record.direction == .outgoing ? "Outgoing" : "Incoming",
+                                        systemImage: record.direction == .outgoing
+                                            ? "arrow.up.right" : "arrow.down.left"
+                                    )
+                                    .font(.system(size: 10, weight: .medium))
+                                    .foregroundColor(record.direction == .outgoing ? .green : .orange)
+                                    .padding(.horizontal, 6)
+                                    .padding(.vertical, 2)
+                                    .background(
+                                        (record.direction == .outgoing ? Color.green : Color.orange)
+                                            .opacity(0.12)
+                                    )
+                                    .cornerRadius(4)
+                                }
+
+                                // Phone number
                                 Text(record.phoneNumber)
-                                    .font(.system(size: 12))
+                                    .font(.system(size: 13))
                                     .foregroundColor(.gray)
+                                    .lineLimit(1)
+
+                                // Relative timestamp
+                                Text(callRelativeTime(record.timestamp))
+                                    .font(.system(size: 11))
+                                    .foregroundColor(.gray.opacity(0.6))
                             }
 
                             Spacer()
 
-                            Text(record.timestamp, style: .time)
-                                .font(.system(size: 11))
-                                .foregroundColor(.gray)
+                            // Call button
+                            Image(systemName: "phone.circle.fill")
+                                .font(.system(size: 28))
+                                .foregroundColor(.green.opacity(0.8))
                         }
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(Color(white: 0.08))
-                        .cornerRadius(8)
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color(white: 0.10))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.white.opacity(0.03), lineWidth: 0.5)
+                                )
+                        )
                         .padding(.horizontal, 8)
                         .contentShape(Rectangle())
                         .onTapGesture {
@@ -188,6 +254,33 @@ struct ContentView: View {
                 }
                 .padding(.vertical, 4)
             }
+        }
+    }
+
+    // MARK: - Call History Helpers
+
+    private func callInitials(_ name: String) -> String {
+        let parts = name.split(separator: " ")
+        return String(parts.compactMap { $0.first }.prefix(2)).uppercased()
+    }
+
+    private func callAvatarColor(_ name: String) -> Color {
+        let colors: [Color] = [.blue, .cyan, .mint, .teal, .indigo, .purple, .pink, .orange]
+        let hash = abs(name.hashValue)
+        return colors[hash % colors.count]
+    }
+
+    private func callRelativeTime(_ date: Date) -> String {
+        let interval = -date.timeIntervalSinceNow
+        switch interval {
+        case ..<60: return "Just now"
+        case ..<3600: return "\(Int(interval / 60))m ago"
+        case ..<86400: return "\(Int(interval / 3600))h ago"
+        case ..<172800: return "Yesterday"
+        default:
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM/dd"
+            return formatter.string(from: date)
         }
     }
 
