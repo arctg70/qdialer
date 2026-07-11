@@ -8,6 +8,7 @@ APP_DIR = os.path.join(PROJECT_DIR, "qdialer")
 
 # ── File layout ──────────────────────────────────────────────────────────────
 SOURCE_FILES = [
+    ("Helpers", "Localized.swift"),
     ("Models", "ContactModel.swift"),
     ("Models", "CallHistory.swift"),
     ("Services", "PinyinService.swift"),
@@ -34,7 +35,7 @@ def add_uid(key):
     return h
 
 for k in [
-    "root_group", "app_group", "models_group", "services_group",
+    "root_group", "app_group", "helpers_group", "models_group", "services_group",
     "vms_group", "views_group", "product_ref", "native_target",
     "sources_phase", "resources_phase", "frameworks_phase",
     "config_debug", "config_release", "config_list_target", "config_list_project",
@@ -198,12 +199,16 @@ objects[oid("product_ref")] = {
 }
 
 # Groups
+helpers_children = [oid(f"fr_{os.path.join('Helpers', fn)}") for _, fn in SOURCE_FILES if _ == "Helpers"]
 models_children = [oid(f"fr_{os.path.join('Models', fn)}") for _, fn in SOURCE_FILES if _ == "Models"]
 services_children = [oid(f"fr_{os.path.join('Services', fn)}") for _, fn in SOURCE_FILES if _ == "Services"]
 vms_children = [oid(f"fr_{os.path.join('ViewModels', fn)}") for _, fn in SOURCE_FILES if _ == "ViewModels"]
 views_children = [oid(f"fr_{os.path.join('Views', fn)}") for _, fn in SOURCE_FILES if _ == "Views"]
 
 root_children = []
+
+objects[oid("helpers_group")] = grp("Helpers", helpers_children)
+root_children.append(oid("helpers_group"))
 
 objects[oid("models_group")] = grp("Models", models_children)
 root_children.append(oid("models_group"))

@@ -3,279 +3,435 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		1A306831909A45CC59685C58 /* ContactSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CB7AA0B76DA10F82A1BACE /* ContactSearchViewModel.swift */; };
-		1EA4BAEA5CD4E2E160EBAE56 /* ContactRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D5F7FD5E4EC74C24D84015 /* ContactRowView.swift */; };
-		4AFAB8B610E0B90BD54BF272 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAE7992D2514BBF96A34024 /* ContentView.swift */; };
-		50BD67628938C877350F49C2 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C74CCDDCDF9DA11D7A53DF /* SearchBarView.swift */; };
-		708750A8B622B31426AA0EE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86C0F6EB617D1A9B98F1F238 /* Assets.xcassets */; };
-		9EC9F372E66D3CD1A628407D /* qdialerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BAB05B76E4C0532492CCB1 /* qdialerApp.swift */; };
-		D16DBA976822196F812B5BE1 /* CallHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A74AFC741C115E73C113EFA /* CallHistory.swift */; };
-		D4A44B0BABA8D78E3C02F661 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5B129D10DE3A17F4769804 /* ContactModel.swift */; };
-		D9690BBB34820EBBDE95300B /* PinyinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2649675B9DE082E602FBB9B /* PinyinService.swift */; };
-		E991B1D95D4C566C42CA014E /* ContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD92894F79436166955CE7A /* ContactService.swift */; };
-		F7B575765F7EAF4DFB46424C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80E92F3F345E69692E8882B /* KeyboardView.swift */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXFileReference section */
-		1FAE7992D2514BBF96A34024 /* ContentView.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; path = ContentView.swift; sourceTree = "<group>"; };
-		2E5B129D10DE3A17F4769804 /* ContactModel.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; name = ContactModel.swift; path = Models/ContactModel.swift; sourceTree = "<group>"; };
-		32CB7AA0B76DA10F82A1BACE /* ContactSearchViewModel.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; name = ContactSearchViewModel.swift; path = ViewModels/ContactSearchViewModel.swift; sourceTree = "<group>"; };
-		3A74AFC741C115E73C113EFA /* CallHistory.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; name = CallHistory.swift; path = Models/CallHistory.swift; sourceTree = "<group>"; };
-		432B18A941B3839D17015071 /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = Info.plist; sourceTree = "<group>"; };
-		57B5417977C530A34437E955 /* qdialer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = qdialer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		72C74CCDDCDF9DA11D7A53DF /* SearchBarView.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; name = SearchBarView.swift; path = Views/SearchBarView.swift; sourceTree = "<group>"; };
-		86C0F6EB617D1A9B98F1F238 /* Assets.xcassets */ = {isa = PBXFileReference; explicitFileType = folder.assetcatalog; fileEncoding = 4; path = Assets.xcassets; sourceTree = "<group>"; };
-		8BD92894F79436166955CE7A /* ContactService.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; name = ContactService.swift; path = Services/ContactService.swift; sourceTree = "<group>"; };
-		A0BAB05B76E4C0532492CCB1 /* qdialerApp.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; path = qdialerApp.swift; sourceTree = "<group>"; };
-		A80E92F3F345E69692E8882B /* KeyboardView.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; name = KeyboardView.swift; path = Views/KeyboardView.swift; sourceTree = "<group>"; };
-		D2649675B9DE082E602FBB9B /* PinyinService.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; name = PinyinService.swift; path = Services/PinyinService.swift; sourceTree = "<group>"; };
-		D5D5F7FD5E4EC74C24D84015 /* ContactRowView.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; name = ContactRowView.swift; path = Views/ContactRowView.swift; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		215EBE20A16B86F249CA1F7B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		28FA94739E25A18E32EADABE /* qdialer */ = {
-			isa = PBXGroup;
-			children = (
-				6B8D5BC91CA524F387113C15 /* Models */,
-				44B402E101BC36F156CDD49D /* Services */,
-				BCE78252456278A29B256304 /* ViewModels */,
-				4DB71D6B92EF4DCCBE0D258D /* Views */,
-				1FAE7992D2514BBF96A34024 /* ContentView.swift */,
-				A0BAB05B76E4C0532492CCB1 /* qdialerApp.swift */,
-				432B18A941B3839D17015071 /* Info.plist */,
-				86C0F6EB617D1A9B98F1F238 /* Assets.xcassets */,
-			);
-			path = qdialer;
+		11DF0A9FC11DD12BA7584FFD /* PBXFileReference */ = {
+			isa = PBXFileReference;
+			explicitFileType = sourcecode.swift;
+			fileEncoding = 4;
+			name = SearchBarView.swift;
+			path = "Views/SearchBarView.swift";
 			sourceTree = "<group>";
 		};
-		44B402E101BC36F156CDD49D /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				D2649675B9DE082E602FBB9B /* PinyinService.swift */,
-				8BD92894F79436166955CE7A /* ContactService.swift */,
-			);
-			name = Services;
-			sourceTree = "<group>";
-		};
-		4DB71D6B92EF4DCCBE0D258D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A80E92F3F345E69692E8882B /* KeyboardView.swift */,
-				72C74CCDDCDF9DA11D7A53DF /* SearchBarView.swift */,
-				D5D5F7FD5E4EC74C24D84015 /* ContactRowView.swift */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		6B8D5BC91CA524F387113C15 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				2E5B129D10DE3A17F4769804 /* ContactModel.swift */,
-				3A74AFC741C115E73C113EFA /* CallHistory.swift */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		BCE78252456278A29B256304 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				32CB7AA0B76DA10F82A1BACE /* ContactSearchViewModel.swift */,
-			);
-			name = ViewModels;
-			sourceTree = "<group>";
-		};
-		E03575B5A21509AD2DE42D82 = {
-			isa = PBXGroup;
-			children = (
-				28FA94739E25A18E32EADABE /* qdialer */,
-				57B5417977C530A34437E955 /* qdialer.app */,
-			);
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
 
-/* Begin PBXNativeTarget section */
-		DE32645CB0C7BB1F8F86A9D2 /* qdialer */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4431F91A4A727BE6BE1BAF38 /* Build configuration list for PBXNativeTarget "qdialer" */;
-			buildPhases = (
-				3C34355382F45B1E86E1FE0B /* Sources */,
-				215EBE20A16B86F249CA1F7B /* Frameworks */,
-				D0DE205069399ED6E384A758 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = qdialer;
-			productName = qdialer;
-			productReference = 57B5417977C530A34437E955 /* qdialer.app */;
-			productType = "com.apple.product-type.application";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		D2401EEEB7BB0C12D3EF5790 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1720;
-				LastUpgradeCheck = 1720;
-				TargetAttributes = {
-					DE32645CB0C7BB1F8F86A9D2 = {
-						CreatedOnToolsVersion = 17.2;
-					};
-				};
-			};
-			buildConfigurationList = E62D9B6C845818BAD6583E4D /* Build configuration list for PBXProject "qdialer" */;
-			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = "zh-Hans";
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				"zh-Hans",
-				Base,
-			);
-			mainGroup = E03575B5A21509AD2DE42D82;
-			productRefGroup = E03575B5A21509AD2DE42D82;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				DE32645CB0C7BB1F8F86A9D2 /* qdialer */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		D0DE205069399ED6E384A758 /* Resources */ = {
+		1527C570196C80B49ED16FAA /* PBXResourcesBuildPhase */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				708750A8B622B31426AA0EE7 /* Assets.xcassets in Resources */,
-			);
+					39EBAED24DE018BE3DF2AF5C
+				);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
 
-/* Begin PBXSourcesBuildPhase section */
-		3C34355382F45B1E86E1FE0B /* Sources */ = {
+		17D1FFEBFC3A990F63102602 /* PBXGroup */ = {
+			isa = PBXGroup;
+			children = (
+					514A6072F1EE765039C784D7,
+					6D8D0352D6D6200270D452F6
+				);
+			name = Services;
+			sourceTree = "<group>";
+		};
+
+		205441185783064F9697BDB3 /* PBXBuildFile */ = {
+			isa = PBXBuildFile;
+			fileRef = D85F87A59E9F694A0C397B13;
+		};
+
+		22C84B284A9F74B39E312891 /* PBXNativeTarget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDA528D67265F553F094B59C;
+			buildPhases = (
+					E67932066EAF398C928F9915,
+					44139197BEA7E153C575D5FA,
+					1527C570196C80B49ED16FAA
+				);
+			buildRules = ();
+			dependencies = ();
+			name = qdialer;
+			productName = qdialer;
+			productReference = 7C8825A4F166413964AFF0D0;
+			productType = com.apple.product-type.application;
+		};
+
+		23CA4C608B1D289C666A8919 /* PBXFileReference */ = {
+			isa = PBXFileReference;
+			explicitFileType = sourcecode.swift;
+			fileEncoding = 4;
+			name = KeyboardView.swift;
+			path = "Views/KeyboardView.swift";
+			sourceTree = "<group>";
+		};
+
+		260BE6A3E98BB7BA0F2FB515 /* PBXGroup */ = {
+			isa = PBXGroup;
+			children = (
+					91C1EA7C41F49EFBDECCF82C
+				);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+
+		26AE61F059247B81BC7587E1 /* PBXFileReference */ = {
+			isa = PBXFileReference;
+			explicitFileType = sourcecode.swift;
+			fileEncoding = 4;
+			name = qdialerApp.swift;
+			path = qdialerApp.swift;
+			sourceTree = "<group>";
+		};
+
+		2E41DBD097069238DFD2AB12 /* PBXBuildFile */ = {
+			isa = PBXBuildFile;
+			fileRef = 514A6072F1EE765039C784D7;
+		};
+
+		3017B9DB67271E45DFB70542 /* PBXProject */ = {
+			isa = PBXProject;
+			attributes = {
+					BuildIndependentTargetsInParallel = 1;
+					LastSwiftUpdateCheck = 1720;
+					LastUpgradeCheck = 1720;
+					TargetAttributes = {
+						22C84B284A9F74B39E312891 = {
+							CreatedOnToolsVersion = 17.2;
+						};
+					};
+				};
+			buildConfigurationList = 5B63368407A5EC2728131CD0;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = zh-Hans;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+					en,
+					zh-Hans,
+					Base
+				);
+			mainGroup = 6FF6624A76070CEB7FE5A090;
+			productRefGroup = 6FF6624A76070CEB7FE5A090;
+			targets = (
+					22C84B284A9F74B39E312891
+				);
+		};
+
+		309B0E692EDB79A8A76C2F4D /* PBXBuildFile */ = {
+			isa = PBXBuildFile;
+			fileRef = 9723D95E8DEC6ED42E76E477;
+		};
+
+		381235ED86194E5C9587F8EA /* PBXFileReference */ = {
+			isa = PBXFileReference;
+			explicitFileType = sourcecode.swift;
+			fileEncoding = 4;
+			name = ContactRowView.swift;
+			path = "Views/ContactRowView.swift";
+			sourceTree = "<group>";
+		};
+
+		39EBAED24DE018BE3DF2AF5C /* PBXBuildFile */ = {
+			isa = PBXBuildFile;
+			fileRef = 42EA209B99BBADF1247F3DA3;
+		};
+
+		3CA393403F84650E24BD1F61 /* PBXBuildFile */ = {
+			isa = PBXBuildFile;
+			fileRef = 6626BE71735D7E0004A93BEE;
+		};
+
+		41884B6DF87B248D62BE9A0B /* PBXFileReference */ = {
+			isa = PBXFileReference;
+			explicitFileType = text.plist.xml;
+			fileEncoding = 4;
+			name = Info.plist;
+			path = Info.plist;
+			sourceTree = "<group>";
+		};
+
+		42EA209B99BBADF1247F3DA3 /* PBXFileReference */ = {
+			isa = PBXFileReference;
+			explicitFileType = folder.assetcatalog;
+			fileEncoding = 4;
+			name = Assets.xcassets;
+			path = Assets.xcassets;
+			sourceTree = "<group>";
+		};
+
+		43AB1DE09E585783BFC116DD /* PBXFileReference */ = {
+			isa = PBXFileReference;
+			explicitFileType = sourcecode.swift;
+			fileEncoding = 4;
+			name = ContactModel.swift;
+			path = "Models/ContactModel.swift";
+			sourceTree = "<group>";
+		};
+
+		44139197BEA7E153C575D5FA /* PBXFrameworksBuildPhase */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+
+		514A6072F1EE765039C784D7 /* PBXFileReference */ = {
+			isa = PBXFileReference;
+			explicitFileType = sourcecode.swift;
+			fileEncoding = 4;
+			name = PinyinService.swift;
+			path = "Services/PinyinService.swift";
+			sourceTree = "<group>";
+		};
+
+		5B63368407A5EC2728131CD0 /* XCConfigurationList */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+					CBB60C83274C9935B24EA8D6,
+					FE1A3633ED7741346EE39164
+				);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+
+		6508ACD9F56D90823379B7FA /* PBXBuildFile */ = {
+			isa = PBXBuildFile;
+			fileRef = 91C1EA7C41F49EFBDECCF82C;
+		};
+
+		6626BE71735D7E0004A93BEE /* PBXFileReference */ = {
+			isa = PBXFileReference;
+			explicitFileType = sourcecode.swift;
+			fileEncoding = 4;
+			name = CallHistory.swift;
+			path = "Models/CallHistory.swift";
+			sourceTree = "<group>";
+		};
+
+		6D8D0352D6D6200270D452F6 /* PBXFileReference */ = {
+			isa = PBXFileReference;
+			explicitFileType = sourcecode.swift;
+			fileEncoding = 4;
+			name = ContactService.swift;
+			path = "Services/ContactService.swift";
+			sourceTree = "<group>";
+		};
+
+		6FF6624A76070CEB7FE5A090 /* PBXGroup */ = {
+			isa = PBXGroup;
+			children = (
+					FE8E4FC532283EFB8A1F4022,
+					7C8825A4F166413964AFF0D0
+				);
+			sourceTree = "<group>";
+		};
+
+		7C8825A4F166413964AFF0D0 /* PBXFileReference */ = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.application;
+			name = qdialer.app;
+			path = qdialer.app;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+
+		7D294FC493F30653E6263A44 /* PBXGroup */ = {
+			isa = PBXGroup;
+			children = (
+					9723D95E8DEC6ED42E76E477
+				);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+
+		91C1EA7C41F49EFBDECCF82C /* PBXFileReference */ = {
+			isa = PBXFileReference;
+			explicitFileType = sourcecode.swift;
+			fileEncoding = 4;
+			name = Localized.swift;
+			path = "Helpers/Localized.swift";
+			sourceTree = "<group>";
+		};
+
+		9723D95E8DEC6ED42E76E477 /* PBXFileReference */ = {
+			isa = PBXFileReference;
+			explicitFileType = sourcecode.swift;
+			fileEncoding = 4;
+			name = ContactSearchViewModel.swift;
+			path = "ViewModels/ContactSearchViewModel.swift";
+			sourceTree = "<group>";
+		};
+
+		9964BC6A1952190EC31EA9ED /* PBXGroup */ = {
+			isa = PBXGroup;
+			children = (
+					43AB1DE09E585783BFC116DD,
+					6626BE71735D7E0004A93BEE
+				);
+			name = Models;
+			sourceTree = "<group>";
+		};
+
+		AB534487B4377774F87F47FF /* PBXBuildFile */ = {
+			isa = PBXBuildFile;
+			fileRef = 26AE61F059247B81BC7587E1;
+		};
+
+		B1BD670AD2E1F30E02DDE97D /* PBXGroup */ = {
+			isa = PBXGroup;
+			children = (
+					23CA4C608B1D289C666A8919,
+					11DF0A9FC11DD12BA7584FFD,
+					381235ED86194E5C9587F8EA
+				);
+			name = Views;
+			sourceTree = "<group>";
+		};
+
+		C697F5BFE305050A2C9E8433 /* PBXBuildFile */ = {
+			isa = PBXBuildFile;
+			fileRef = 6D8D0352D6D6200270D452F6;
+		};
+
+		C71E2A6D8BAE8F55200BCF30 /* PBXBuildFile */ = {
+			isa = PBXBuildFile;
+			fileRef = 41884B6DF87B248D62BE9A0B;
+		};
+
+		CBB60C83274C9935B24EA8D6 /* XCBuildConfiguration */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+					ALWAYS_SEARCH_USER_PATHS = NO;
+					ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+					ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+					CODE_SIGN_STYLE = Automatic;
+					CURRENT_PROJECT_VERSION = 1;
+					GENERATE_INFOPLIST_FILE = NO;
+					INFOPLIST_FILE = "qdialer/Info.plist";
+					INFOPLIST_KEY_CFBundleDisplayName = "Smart Dialer";
+					INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+					INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+					INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+					IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+					LD_RUNPATH_SEARCH_PATHS = (
+						"$(inherited)",
+						"@executable_path/Frameworks"
+					);
+					MARKETING_VERSION = 1.0;
+					PRODUCT_BUNDLE_IDENTIFIER = com.qdialer.app;
+					PRODUCT_NAME = "$(TARGET_NAME)";
+					SDKROOT = iphoneos;
+					SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+					SWIFT_EMIT_LOC_STRINGS = YES;
+					SWIFT_VERSION = 6.0;
+					TARGETED_DEVICE_FAMILY = 1;
+				};
+			name = Debug;
+		};
+
+		CDA528D67265F553F094B59C /* XCConfigurationList */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+					CBB60C83274C9935B24EA8D6,
+					FE1A3633ED7741346EE39164
+				);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+
+		CF9442B5C92D9DDCDB7324EC /* PBXBuildFile */ = {
+			isa = PBXBuildFile;
+			fileRef = 43AB1DE09E585783BFC116DD;
+		};
+
+		D85F87A59E9F694A0C397B13 /* PBXFileReference */ = {
+			isa = PBXFileReference;
+			explicitFileType = sourcecode.swift;
+			fileEncoding = 4;
+			name = ContentView.swift;
+			path = ContentView.swift;
+			sourceTree = "<group>";
+		};
+
+		DC435DD35766BD0F4E11A029 /* PBXBuildFile */ = {
+			isa = PBXBuildFile;
+			fileRef = 381235ED86194E5C9587F8EA;
+		};
+
+		E25137EEE7220CD985022DE0 /* PBXBuildFile */ = {
+			isa = PBXBuildFile;
+			fileRef = 11DF0A9FC11DD12BA7584FFD;
+		};
+
+		E67932066EAF398C928F9915 /* PBXSourcesBuildPhase */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4A44B0BABA8D78E3C02F661 /* ContactModel.swift in Sources */,
-				D16DBA976822196F812B5BE1 /* CallHistory.swift in Sources */,
-				D9690BBB34820EBBDE95300B /* PinyinService.swift in Sources */,
-				E991B1D95D4C566C42CA014E /* ContactService.swift in Sources */,
-				1A306831909A45CC59685C58 /* ContactSearchViewModel.swift in Sources */,
-				F7B575765F7EAF4DFB46424C /* KeyboardView.swift in Sources */,
-				50BD67628938C877350F49C2 /* SearchBarView.swift in Sources */,
-				1EA4BAEA5CD4E2E160EBAE56 /* ContactRowView.swift in Sources */,
-				4AFAB8B610E0B90BD54BF272 /* ContentView.swift in Sources */,
-				9EC9F372E66D3CD1A628407D /* qdialerApp.swift in Sources */,
-			);
+					6508ACD9F56D90823379B7FA,
+					CF9442B5C92D9DDCDB7324EC,
+					3CA393403F84650E24BD1F61,
+					2E41DBD097069238DFD2AB12,
+					C697F5BFE305050A2C9E8433,
+					309B0E692EDB79A8A76C2F4D,
+					EBCCFD5E6986DB7F1209D5CE,
+					E25137EEE7220CD985022DE0,
+					DC435DD35766BD0F4E11A029,
+					205441185783064F9697BDB3,
+					AB534487B4377774F87F47FF
+				);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXSourcesBuildPhase section */
 
-/* Begin XCBuildConfiguration section */
-		299B6E90F434BF027F3F7321 /* Release */ = {
+		EBCCFD5E6986DB7F1209D5CE /* PBXBuildFile */ = {
+			isa = PBXBuildFile;
+			fileRef = 23CA4C608B1D289C666A8919;
+		};
+
+		FE1A3633ED7741346EE39164 /* XCBuildConfiguration */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HNUF5HDKC8;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = qdialer/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Smart Dialer";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.qdialer.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
+					ALWAYS_SEARCH_USER_PATHS = NO;
+					ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+					ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+					CODE_SIGN_STYLE = Automatic;
+					CURRENT_PROJECT_VERSION = 1;
+					GENERATE_INFOPLIST_FILE = NO;
+					INFOPLIST_FILE = "qdialer/Info.plist";
+					INFOPLIST_KEY_CFBundleDisplayName = "Smart Dialer";
+					INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+					INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+					INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+					IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+					LD_RUNPATH_SEARCH_PATHS = (
+						"$(inherited)",
+						"@executable_path/Frameworks"
+					);
+					MARKETING_VERSION = 1.0;
+					PRODUCT_BUNDLE_IDENTIFIER = com.qdialer.app;
+					PRODUCT_NAME = "$(TARGET_NAME)";
+					SDKROOT = iphoneos;
+					SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+					SWIFT_EMIT_LOC_STRINGS = YES;
+					SWIFT_VERSION = 6.0;
+					TARGETED_DEVICE_FAMILY = 1;
+				};
 			name = Release;
 		};
-		F2D545ABE8E2951388396E9E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HNUF5HDKC8;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = qdialer/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Smart Dialer";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.qdialer.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-/* End XCBuildConfiguration section */
 
-/* Begin XCConfigurationList section */
-		4431F91A4A727BE6BE1BAF38 /* Build configuration list for PBXNativeTarget "qdialer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F2D545ABE8E2951388396E9E /* Debug */,
-				299B6E90F434BF027F3F7321 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+		FE8E4FC532283EFB8A1F4022 /* PBXGroup */ = {
+			isa = PBXGroup;
+			children = (
+					260BE6A3E98BB7BA0F2FB515,
+					9964BC6A1952190EC31EA9ED,
+					17D1FFEBFC3A990F63102602,
+					7D294FC493F30653E6263A44,
+					B1BD670AD2E1F30E02DDE97D,
+					D85F87A59E9F694A0C397B13,
+					26AE61F059247B81BC7587E1,
+					41884B6DF87B248D62BE9A0B,
+					42EA209B99BBADF1247F3DA3
+				);
+			name = qdialer;
+			path = qdialer;
+			sourceTree = "<group>";
 		};
-		E62D9B6C845818BAD6583E4D /* Build configuration list for PBXProject "qdialer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F2D545ABE8E2951388396E9E /* Debug */,
-				299B6E90F434BF027F3F7321 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
 	};
-	rootObject = D2401EEEB7BB0C12D3EF5790 /* Project object */;
+	rootObject = 3017B9DB67271E45DFB70542 /* Project object */;
 }

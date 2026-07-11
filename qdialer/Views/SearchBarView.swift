@@ -26,7 +26,7 @@ struct SearchBarView: View {
                     .font(.system(size: 15, weight: .medium))
                     .foregroundColor(.gray)
 
-                Text(text.isEmpty ? "Type name initials to search…" : text)
+                Text(verbatim: text.isEmpty ? L.str("Type name initials to search…", "输入姓名首字母搜索…") : text)
                     .font(.title3)
                     .fontWeight(.semibold)
                     .foregroundColor(text.isEmpty ? .gray.opacity(0.6) : .white)
@@ -38,7 +38,7 @@ struct SearchBarView: View {
                     Image(systemName: "phone.circle.fill")
                         .font(.system(size: 20))
                         .foregroundColor(.green)
-                    Text("Dial")
+                    L.text("Dial", "拨打")
                         .font(.system(size: 12, weight: .bold))
                         .foregroundColor(.green)
                 } else if !text.isEmpty {
@@ -64,14 +64,17 @@ struct SearchBarView: View {
 
             // Result count hint
             if isSearching {
+                // Result count hint
                 HStack(spacing: 4) {
                     Text("\(resultCount)")
                         .fontWeight(.bold)
                         .foregroundColor(resultCount > 0 ? .green : .gray)
-                    Text(resultCount == 1 ? "contact" : "contacts")
+                    Text(verbatim: L.str("contact", "个联系人"))
                         .foregroundColor(.gray)
-                    Text("found")
-                        .foregroundColor(.gray.opacity(0.7))
+                    if !L.isZh {
+                        Text("found")
+                            .foregroundColor(.gray.opacity(0.7))
+                    }
                     Spacer()
                 }
                 .font(.caption)

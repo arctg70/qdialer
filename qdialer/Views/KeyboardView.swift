@@ -158,7 +158,7 @@ final class KeyboardUIView: UIStackView {
 
         // Space
         let space = UIButton(type: .system)
-        space.setTitle("SPACE", for: .normal)
+        space.setTitle(L.str("SPACE", "空格"), for: .normal)
         space.titleLabel?.font = .systemFont(ofSize: 13, weight: .semibold)
         space.setTitleColor(.white.withAlphaComponent(0.6), for: .normal)
         space.backgroundColor = UIColor(white: 0.15, alpha: 1)
