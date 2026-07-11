@@ -6,6 +6,17 @@ struct SearchBarView: View {
     let text: String
     let resultCount: Int
     let isSearching: Bool
+    let dialableNumber: String?
+    let onDial: (() -> Void)?
+
+    init(text: String, resultCount: Int, isSearching: Bool,
+         dialableNumber: String? = nil, onDial: (() -> Void)? = nil) {
+        self.text = text
+        self.resultCount = resultCount
+        self.isSearching = isSearching
+        self.dialableNumber = dialableNumber
+        self.onDial = onDial
+    }
 
     var body: some View {
         VStack(spacing: 6) {
@@ -22,7 +33,15 @@ struct SearchBarView: View {
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                if !text.isEmpty {
+                if dialableNumber != nil {
+                    Spacer().frame(width: 4)
+                    Image(systemName: "phone.circle.fill")
+                        .font(.system(size: 20))
+                        .foregroundColor(.green)
+                    Text("Dial")
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundColor(.green)
+                } else if !text.isEmpty {
                     Image(systemName: "cursorarrow.click")
                         .font(.system(size: 12))
                         .foregroundColor(.green.opacity(0.6))
@@ -32,12 +51,16 @@ struct SearchBarView: View {
             .padding(.vertical, 12)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Color(white: 0.13))
+                    .fill(dialableNumber != nil ? Color.green.opacity(0.08) : Color(white: 0.13))
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.white.opacity(0.08), lineWidth: 0.5)
+                            .stroke(dialableNumber != nil ? Color.green.opacity(0.35) : Color.white.opacity(0.08), lineWidth: 0.5)
                     )
             )
+            .contentShape(Rectangle())
+            .onTapGesture {
+                if dialableNumber != nil { onDial?() }
+            }
 
             // Result count hint
             if isSearching {
@@ -68,6 +91,8 @@ struct SearchBarView: View {
         SearchBarView(text: "", resultCount: 0, isSearching: false)
         SearchBarView(text: "zs", resultCount: 3, isSearching: true)
         SearchBarView(text: "zhang san", resultCount: 1, isSearching: true)
+        SearchBarView(text: "13800138000", resultCount: 0, isSearching: true,
+                       dialableNumber: "13800138000")
     }
     .padding()
     .background(Color.black)

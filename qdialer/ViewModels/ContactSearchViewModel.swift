@@ -25,6 +25,24 @@ final class ContactSearchViewModel: ObservableObject {
     private let pinyinService = PinyinService.shared
     private let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
 
+    /// If search text strips down to pure digits (3+), this is a direct-dial number
+    var dialableNumber: String? {
+        let digits = searchText.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        guard digits.count >= 3 else { return nil }
+        return digits
+    }
+
+    /// Dial a raw phone number and save to call history
+    func callRawNumber(_ number: String) {
+        feedbackGenerator.impactOccurred()
+        CallHistoryStore.shared.addCall(name: number, number: number)
+        callHistory = CallHistoryStore.shared.records
+        let clean = number.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        guard let url = URL(string: "tel://\(clean)"),
+              UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url)
+    }
+
     // MARK: Public API
 
     func setup() async {

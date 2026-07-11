@@ -10,7 +10,9 @@ struct ContentView: View {
             SearchBarView(
                 text: viewModel.searchText,
                 resultCount: viewModel.filteredContacts.count,
-                isSearching: !viewModel.searchText.isEmpty
+                isSearching: !viewModel.searchText.isEmpty,
+                dialableNumber: viewModel.dialableNumber,
+                onDial: { viewModel.callRawNumber(viewModel.dialableNumber ?? "") }
             )
             .padding(.horizontal)
             .padding(.top, 4)
