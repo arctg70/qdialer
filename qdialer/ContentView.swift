@@ -90,6 +90,7 @@ struct ContentView: View {
             VStack(spacing: 12) {
                 ProgressView().progressViewStyle(.circular).tint(.green)
                 L.text("Loading contacts…", "正在加载通讯录…").font(.caption).foregroundColor(.gray)
+            }
             Spacer()
         } else if viewModel.showPermissionDenied {
             Spacer()

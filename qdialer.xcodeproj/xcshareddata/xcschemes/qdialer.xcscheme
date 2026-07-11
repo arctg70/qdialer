@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DE32645CB0C7BB1F8F86A9D2"
+               BlueprintIdentifier = "22C84B284A9F74B39E312891"
                BuildableName = "qdialer.app"
                BlueprintName = "qdialer"
                ReferencedContainer = "container:qdialer.xcodeproj">
@@ -45,7 +45,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DE32645CB0C7BB1F8F86A9D2"
+            BlueprintIdentifier = "22C84B284A9F74B39E312891"
             BuildableName = "qdialer.app"
             BlueprintName = "qdialer"
             ReferencedContainer = "container:qdialer.xcodeproj">
@@ -62,7 +62,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DE32645CB0C7BB1F8F86A9D2"
+            BlueprintIdentifier = "22C84B284A9F74B39E312891"
             BuildableName = "qdialer.app"
             BlueprintName = "qdialer"
             ReferencedContainer = "container:qdialer.xcodeproj">
