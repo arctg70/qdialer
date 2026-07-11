@@ -86,6 +86,25 @@ final class PinyinService {
         else if revInits.hasPrefix(q) { scores.append(2500) }
         else if revInits.contains(q) { scores.append(900) }
 
+        // === Middle name matching ===
+        if !contact.middleName.isEmpty {
+            let midName = contact.middleName.lowercased()
+            if midName == q { scores.append(8500) }
+            else if midName.hasPrefix(q) { scores.append(4200) }
+            else if midName.contains(q) { scores.append(1800) }
+
+            // Middle name pinyin
+            let midPy = contact.middleNamePinyin
+            if midPy == q { scores.append(6500) }
+            else if midPy.hasPrefix(q) || midPy.contains(q) { scores.append(2200) }
+
+            // Middle name pinyin initials
+            let midInit = contact.middleNamePinyinInitials
+            if midInit == q { scores.append(5000) }
+            else if midInit.hasPrefix(q) { scores.append(2000) }
+            else if midInit.contains(q) { scores.append(800) }
+        }
+
         // === Nickname matching ===
         if !contact.nickname.isEmpty {
             let nick = contact.nickname.lowercased()

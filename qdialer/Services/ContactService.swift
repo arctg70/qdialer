@@ -29,6 +29,7 @@ final class ContactService {
     func fetchAllContacts() async -> [ContactModel] {
         let keys: [CNKeyDescriptor] = [
             CNContactGivenNameKey as CNKeyDescriptor,
+            CNContactMiddleNameKey as CNKeyDescriptor,
             CNContactFamilyNameKey as CNKeyDescriptor,
             CNContactNicknameKey as CNKeyDescriptor,
             CNContactPhoneNumbersKey as CNKeyDescriptor,
