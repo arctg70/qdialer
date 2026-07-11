@@ -111,10 +111,11 @@ struct ContentView: View {
                         ForEach(Array(viewModel.filteredContacts.enumerated()), id: \.element) { _, contact in
                             ContactRowView(contact: contact, isHighlighted: viewModel.selectedContact?.id == contact.id)
                                 .onTapGesture {
-                                    if contact.phoneNumbers.count > 1 {
-                                        viewModel.selectContact(contact)
-                                    } else {
+                                    if viewModel.searchText.contains(where: \.isNumber)
+                                        || contact.phoneNumbers.count == 1 {
                                         viewModel.callContact(contact)
+                                    } else {
+                                        viewModel.selectContact(contact)
                                     }
                                 }
                         }

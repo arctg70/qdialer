@@ -115,8 +115,22 @@ final class ContactSearchViewModel: ObservableObject {
 
     /// Dial immediately — saves to history
     /// - Parameter phoneNumber: if nil, uses the contact's first number
+    ///   (when search text contains digits, auto-picks the number that matches the typed digits)
     func callContact(_ contact: ContactModel, phoneNumber: String? = nil) {
-        guard let phone = phoneNumber ?? contact.phoneNumbers.first else { return }
+        let phone: String?
+        if let pn = phoneNumber {
+            phone = pn
+        } else if searchText.contains(where: \.isNumber) {
+            // Auto-match the phone number that corresponds to what the user typed
+            let typedDigits = searchText.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+            phone = contact.phoneNumbers.first { number in
+                let clean = number.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+                return clean.contains(typedDigits)
+            } ?? contact.phoneNumbers.first
+        } else {
+            phone = contact.phoneNumbers.first
+        }
+        guard let phone else { return }
         feedbackGenerator.impactOccurred()
         CallHistoryStore.shared.addCall(name: contact.fullName, number: phone)
         callHistory = CallHistoryStore.shared.records
