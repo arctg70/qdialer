@@ -49,8 +49,21 @@ final class ContactSearchViewModel: ObservableObject {
         feedbackGenerator.prepare()
         CallHistoryStore.shared.load()
         callHistory = CallHistoryStore.shared.records
+        CallObserverService.shared.startObserving()
+        observeCallHistoryChanges()
         await requestPermissionAndLoad()
         observeContactChanges()
+    }
+
+    /// Reload call history when the observer records a new system call
+    private func observeCallHistoryChanges() {
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name("CallHistoryDidChange"),
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.callHistory = CallHistoryStore.shared.records
+        }
     }
 
     /// Listen for external contact changes and reload automatically

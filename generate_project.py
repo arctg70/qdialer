@@ -13,6 +13,7 @@ SOURCE_FILES = [
     ("Models", "CallHistory.swift"),
     ("Services", "PinyinService.swift"),
     ("Services", "ContactService.swift"),
+    ("Services", "CallObserverService.swift"),
     ("ViewModels", "ContactSearchViewModel.swift"),
     ("Views", "KeyboardView.swift"),
     ("Views", "SearchBarView.swift"),
