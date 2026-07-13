@@ -175,26 +175,15 @@ struct ContentView: View {
             ScrollView {
                 LazyVStack(spacing: 2) {
                     ForEach(viewModel.callHistory) { record in
-                        let isUnknown = record.phoneNumber.isEmpty
                         HStack(spacing: 12) {
-                            // Avatar with initials
+                            // Avatar with initials (same style as ContactRowView)
                             Group {
-                                if isUnknown {
-                                    ZStack {
-                                        Circle()
-                                            .fill(Color.gray.opacity(0.25))
-                                        Image(systemName: "phone")
-                                            .font(.system(size: 16))
-                                            .foregroundColor(.gray)
-                                    }
-                                } else {
-                                    ZStack {
-                                        Circle()
-                                            .fill(callAvatarColor(record.contactName))
-                                        Text(callInitials(record.contactName))
-                                            .font(.system(size: 16, weight: .semibold))
-                                            .foregroundColor(.white)
-                                    }
+                                ZStack {
+                                    Circle()
+                                        .fill(callAvatarColor(record.contactName))
+                                    Text(callInitials(record.contactName))
+                                        .font(.system(size: 16, weight: .semibold))
+                                        .foregroundColor(.white)
                                 }
                             }
                             .frame(width: 48, height: 48)
@@ -208,9 +197,7 @@ struct ContentView: View {
                             VStack(alignment: .leading, spacing: 2) {
                                 // Name row + direction badge
                                 HStack(spacing: 6) {
-                                    Text(isUnknown
-                                         ? L.str("Unknown", "未显示")
-                                         : record.contactName)
+                                    Text(record.contactName)
                                         .font(.system(size: 16, weight: .medium))
                                         .foregroundColor(.white)
                                         .lineLimit(1)
@@ -234,18 +221,11 @@ struct ContentView: View {
                                     .cornerRadius(4)
                                 }
 
-                                // Phone number (empty for observed calls)
-                                if !isUnknown {
-                                    Text(record.phoneNumber)
-                                        .font(.system(size: 13))
-                                        .foregroundColor(.gray)
-                                        .lineLimit(1)
-                                } else {
-                                    Text(L.str("From system call log", "来自系统通话"))
-                                        .font(.system(size: 12))
-                                        .foregroundColor(.gray.opacity(0.5))
-                                        .lineLimit(1)
-                                }
+                                // Phone number
+                                Text(record.phoneNumber)
+                                    .font(.system(size: 13))
+                                    .foregroundColor(.gray)
+                                    .lineLimit(1)
 
                                 // Relative timestamp
                                 Text(callRelativeTime(record.timestamp))
@@ -255,20 +235,16 @@ struct ContentView: View {
 
                             Spacer()
 
-                            // Call button (disabled for unknown calls)
+                            // Call button
                             Image(systemName: "phone.circle.fill")
                                 .font(.system(size: 28))
-                                .foregroundColor(isUnknown
-                                    ? .gray.opacity(0.3)
-                                    : .green.opacity(0.8))
+                                .foregroundColor(.green.opacity(0.8))
                         }
                         .padding(.horizontal, 14)
                         .padding(.vertical, 10)
                         .background(
                             RoundedRectangle(cornerRadius: 12)
-                                .fill(isUnknown
-                                    ? Color(white: 0.08)
-                                    : Color(white: 0.10))
+                                .fill(Color(white: 0.10))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
                                         .stroke(Color.white.opacity(0.03), lineWidth: 0.5)
@@ -277,7 +253,6 @@ struct ContentView: View {
                         .padding(.horizontal, 8)
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            guard !isUnknown else { return }
                             let clean = record.phoneNumber.components(
                                 separatedBy: CharacterSet.decimalDigits.inverted
                             ).joined()
